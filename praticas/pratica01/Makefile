@@ -1,7 +1,20 @@
-all: matriz.o lista.o
+# Makefile modelo para Teoria dos Grafos
 
-matriz.o: grafo_matriz.c grafo_matriz.h
-	gcc -c grafo_matriz.c -Wall
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -std=c11 -lm
+TARGET = main
+SRC = *.c
+OBJ = *.o
 
-lista.o: grafo_lista.c grafo_lista.h
-	gcc -c grafo_lista.c -Wall
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
+
+clean:
+	rm -f $(TARGET) $(OBJ)
+
+run: $(TARGET)
+	./$(TARGET)
+
+.PHONY: all clean run
